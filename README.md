@@ -25,3 +25,5 @@ but fails for more GPUs with errors like:
 1 0x00000000009a6851 hypre_FinalizeCommunication() /scratch/project/open-29-3/hypre-master_paragpu5/src/struct_mv/struct_communication.c:1216  
 2 0x00000000009b379e hypre_StructMatrixAssemble() /scratch/project/open-29-3/hypre-master_paragpu5/src/struct_mv/struct_matrix.c:1436  
 3 0x0000000000996886 HYPRE_StructMatrixAssemble() /scratch/project/open-29-3/hypre-master_paragpu5/src/struct_mv/HYPRE_struct_matrix.c:323  
+
+This is what happens on my cluster, not sure why the CUDA-aware MPI version gives errors like this...
