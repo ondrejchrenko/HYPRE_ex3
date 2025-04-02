@@ -33,5 +33,11 @@ For HYPRE configured with
 ./configure --with-cuda --with-gpu-arch=80 --enable-gpu-aware-mpi  
 the example runs fine when invoked as  
 mpirun -np 1 ./ex3 -n 100 -solver 0 -v 1 1  
-but fails for more GPUs with errors like: 
+but fails for more GPUs. The initial norm is correct (<b,b>: 9.609803e-05) and the same as above, but then I get:\
+ERROR detected by Hypre ...  BEGIN\
+ERROR -- hypre_PCGSolve: INFs and/or NaNs detected in input.\
+User probably placed non-numerics in supplied A or x_0.\
+Returning error flag += 101.  Program not terminated.\
+ERROR detected by Hypre ...  END
+
 
