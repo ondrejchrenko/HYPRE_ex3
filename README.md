@@ -11,19 +11,27 @@ make use_cuda=1 ex3
 For HYPRE configured with  
 ./configure --with-cuda --with-gpu-arch=80  
 the example runs fine when invoked as  
-mpirun -np 1 ./ex3 -n 33 -solver 0 -v 1 1  
-mpirun -np 4 ./ex3 -n 33 -solver 0 -v 1 1  
+mpirun -np 1 ./ex3 -n 100 -solver 0 -v 1 1  
+or
+mpirun -np 4 ./ex3 -n 50 -solver 0 -v 1 1 
+
+I obtain output:
+-------------------------------------------------
+<b,b>: 9.609803e-05
+Iters       ||r||_2     conv.rate  ||r||_2/||b||_2
+-----    ------------   ---------  ------------ 
+    1    2.499214e-03    0.254945    2.549448e-01
+    2    1.016622e-04    0.040678    1.037056e-02
+    3    1.619374e-06    0.015929    1.651924e-04
+    4    2.948699e-08    0.018209    3.007968e-06
+    5    6.974962e-10    0.023654    7.115158e-08
+Iterations = 5
+Final Relative Residual Norm = 7.11516e-08
+-------------------------------------------------
 
 For HYPRE configured with  
 ./configure --with-cuda --with-gpu-arch=80 --enable-gpu-aware-mpi  
 the example runs fine when invoked as  
-mpirun -np 1 ./ex3 -n 33 -solver 0 -v 1 1  
-but fails for more GPUs with errors like:  
-[acn35:1588861:0:1588861] Caught signal 11 (Segmentation fault: invalid permissions for mapped object at address 0x153b88e00004)  
-==== backtrace (tid:1588861) ====  
-0 0x0000000000012d10 __funlockfile() :0  
-1 0x00000000009a6851 hypre_FinalizeCommunication() /scratch/project/open-29-3/hypre-master_paragpu5/src/struct_mv/struct_communication.c:1216  
-2 0x00000000009b379e hypre_StructMatrixAssemble() /scratch/project/open-29-3/hypre-master_paragpu5/src/struct_mv/struct_matrix.c:1436  
-3 0x0000000000996886 HYPRE_StructMatrixAssemble() /scratch/project/open-29-3/hypre-master_paragpu5/src/struct_mv/HYPRE_struct_matrix.c:323  
+mpirun -np 1 ./ex3 -n 100 -solver 0 -v 1 1  
+but fails for more GPUs with errors like: 
 
-This is what happens on my cluster, not sure why the CUDA-aware MPI version gives errors like this...

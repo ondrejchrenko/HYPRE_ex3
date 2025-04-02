@@ -26,7 +26,7 @@ HYPRE_DIR = ../hypre
 ifeq ($(use_cuda), 1)
    CUDA_INCL = -I${CUDA_HOME}/include
 #   CUDA_LIBS = -L${CUDA_HOME}/lib64 -lcudart -lcublas -lcusparse -lcurand -lstdc++ -L$(XL_DIR)/xlC/16.1.1/lib -libmc++
-   CUDA_LIBS = -L${CUDA_HOME}/lib64 -lcudart -lcublas -lcusparse -lcurand -lstdc++ -L$(XL_DIR)/xlC/16.1.1/lib 
+   CUDA_LIBS = -L${CUDA_HOME}/lib64 -lcudart -lcublas -lcusparse -lcurand -lstdc++ -L$(XL_DIR)/xlC/16.1.1/lib -lcusolver
 #   CUDA_ARCH = -gencode arch=compute_60,code=sm_60 -gencode arch=compute_70,code=sm_70
    CUDA_ARCH = -gencode arch=compute_80,code=sm_80
    NVCC_LDFLAGS = -ccbin=${CXX} ${CUDA_ARCH}
@@ -70,7 +70,7 @@ IF90FLAGS =
 F90FLAGS = $(FFLAGS) $(IF90FLAGS)
 
 LINKOPTS = $(LOPTS_CUDA) $(LOPTS_DOMP)
-LIBS = -L$(HYPRE_DIR)/lib -lHYPRE -lm $(CUDA_LIBS) $(DOMP_LIBS)
+LIBS = -L$(HYPRE_DIR)/lib -L$(HYPRE_DIR)/lib64 -lHYPRE -lm $(CUDA_LIBS) $(DOMP_LIBS)
 LFLAGS = $(LINKOPTS) $(LIBS)
 LFLAGS_B =\
  -L${HYPRE_DIR}/lib\

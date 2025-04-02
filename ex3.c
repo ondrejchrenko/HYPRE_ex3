@@ -154,6 +154,9 @@ int main (int argc, char *argv[])
       }
    }
 
+//   HYPRE_Int gpu_aware_mpi = 1;
+//   HYPRE_SetGpuAwareMPI(gpu_aware_mpi);
+
    // simple CPU rank <--> GPU rank binding that should work for 1 node
    int device_id;
    device_id = myid;
