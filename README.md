@@ -16,7 +16,6 @@ or
 mpirun -np 4 ./ex3 -n 50 -solver 0 -v 1 1 
 
 I obtain output:
--------------------------------------------------
 <b,b>: 9.609803e-05
 Iters       ||r||_2     conv.rate  ||r||_2/||b||_2
 -----    ------------   ---------  ------------ 
@@ -27,7 +26,7 @@ Iters       ||r||_2     conv.rate  ||r||_2/||b||_2
     5    6.974962e-10    0.023654    7.115158e-08
 Iterations = 5
 Final Relative Residual Norm = 7.11516e-08
--------------------------------------------------
+
 
 For HYPRE configured with  
 ./configure --with-cuda --with-gpu-arch=80 --enable-gpu-aware-mpi  
