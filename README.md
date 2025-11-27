@@ -13,8 +13,8 @@ To split the job for multi-GPU runs, there is a primitive mapping of CPU_Rank nu
 For HYPRE configured with  
 ./configure --with-cuda --with-gpu-arch=80  
 the example runs fine when invoked as  
-mpirun -np 1 ./ex3 -n 100 -solver 0 -v 1 1  
-or
+mpirun -np 1 ./ex3 -n 100 -solver 0 -v 1 1\  
+or\
 mpirun -np 4 ./ex3 -n 50 -solver 0 -v 1 1 
 
 I obtain output:\
